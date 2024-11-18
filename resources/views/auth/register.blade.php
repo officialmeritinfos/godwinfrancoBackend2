@@ -20,6 +20,7 @@
     <link href="{{asset('dashboard/user/css/icons.css')}}" rel="stylesheet">
     <title>{{$pageName}} - {{$siteName}}</title>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <style>
         body {
             background-color: #0818A8;
@@ -95,6 +96,27 @@
                                                 <label for="inputEmailAddress" class="form-label">Referral<sup>(optional)</sup> </label>
                                                 <input type="text" class="form-control" id="inputEmailAddress"
                                                        name="referral" value="{{old('referral')}} {{$referral}}"/>
+                                            </div>
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+
+                                                    <div class="form-group">
+
+                                                        <strong>ReCaptcha:</strong>
+
+                                                        <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div>
+
+                                                        @if ($errors->has('g-recaptcha-response'))
+
+                                                            <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+
+                                                        @endif
+
+                                                    </div>
+
+                                                </div>
+
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-check form-switch">
